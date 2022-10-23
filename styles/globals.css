@@ -1,26 +1,42 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input:focus {
+    outline: none;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.link-content {
+    @apply text-base-content/75;
+    @apply hover:text-secondary/75;
+    @apply cursor-pointer;
+    @apply active:text-secondary;
+    @apply transition-all;
+    @apply duration-500;
+    @apply block;
+    @apply relative;
+    @apply font-bold;
 }
 
-* {
-  box-sizing: border-box;
+.link-content:hover {
+    @apply scale-105;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.link-content::after {
+    @apply absolute;
+    content: '';
+    width: 120%;
+    height: 2px;
+    @apply bg-secondary/75;
+    left: -10%;
+    bottom: -4px;
+    @apply transition-all;
+    @apply duration-500;
+    @apply scale-0;
+    @apply origin-left;
+}
+
+.link-content:hover::after {
+    @apply scale-100;
+    @apply -rotate-3;
 }
