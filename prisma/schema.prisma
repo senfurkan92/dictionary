@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// npx prisma db pus 
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb+srv://furkansen92:Rambo1076.@cluster0.rpmse5v.mongodb.net/test"
+}
+
+model Word {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  content       String
+  prononciation String
+  record        String?
+  meanings      Meaning[]
+  createDate    DateTime  @default(now())
+  updateDate    DateTime  @updatedAt
+  isDeleted     Boolean   @default(false)
+}
+
+model Meaning {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  content       String
+  variety       String
+  word_id       String      @db.ObjectId
+  word          Word        @relation(fields: [word_id], references: [id])
+  sentences     Sentence[]
+  transform     Transform?
+  createDate    DateTime  @default(now())
+  updateDate    DateTime  @updatedAt
+  isDeleted     Boolean   @default(false)
+}
+
+model Transform {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  v1            String
+  v2            String
+  v3            String
+  meaning       Meaning     @relation(fields: [meaning_id], references: [id])
+  meaning_id    String      @unique @db.ObjectId
+  createDate    DateTime  @default(now())
+  updateDate    DateTime  @updatedAt
+  isDeleted     Boolean   @default(false)
+}
+
+model Sentence {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  content       String
+  meaning_id    String      @db.ObjectId
+  meaning       Meaning     @relation(fields: [meaning_id], references: [id])
+  createDate    DateTime  @default(now())
+  updateDate    DateTime  @updatedAt
+  isDeleted     Boolean   @default(false)
+}

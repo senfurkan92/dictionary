@@ -4,7 +4,7 @@ interface AppMainProps {
 
 const AppMain = (props : AppMainProps) : JSX.Element => {
     return (
-        <main>
+        <main className="mx-auto container py-8">
             {props.children}
         </main>
     )

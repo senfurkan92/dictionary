@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/future/image"
-import logo from '../../static/logo.png'
+import logo from '../../public/logo.png'
 
 const AppHeader = () : JSX.Element => {
     return (
@@ -18,34 +18,44 @@ const AppHeader = () : JSX.Element => {
                         <Link 
                             href={'/'}
                         >
-                            <Image 
-                                src={logo} 
-                                alt="Dictionary App"
-                                width={60}
-                                className="cursor-pointer"
-                            />
+                            <div>
+                                <Image 
+                                    src={logo} 
+                                    alt="Dictionary App"
+                                    width={60}
+                                    className="cursor-pointer"
+                                />
+                            </div>
                         </Link>
                     </div>
                     {/* navlinks */}
                     <div 
                         className="flex justify-center gap-6"
                     >
-                        <Link href={'/'}>
+                        <Link href={'/favorites'}>
                             <span className="link-content">
                                 Favorites
                             </span>
                         </Link>
-                        <Link href={'/'}>
+                        <Link href={'/quiz'}>
                             <span className="link-content">
                                 Quiz
                             </span>   
                         </Link>
-                        <Link href={'/'}>
-                            <span className="link-content">
-                                Manage
-                            </span>     
+                        <Link href={'/manage'}>
+                            <div className="dropdown dropdown-end dropdown-hover">
+                                <label tabIndex={0} className="link-content">Hover</label>
+                                <ul tabIndex={0} className=" transition-all duration-1000 dropdown-content menu shadow bg-transparent rounded-box w-52 py-7 translate-x-1/2">
+                                    <li className="bg-base-300 px-2 py-2 rounded-none">
+                                        <Link href="/manage/words">Words</Link>
+                                    </li>
+                                    <li className="bg-base-300 px-2 pb-2 rounded-none">
+                                        <Link href="/manage/words">Words</Link>
+                                    </li>
+                                </ul>
+                            </div>    
                         </Link>
-                        <Link href={'/'}>
+                        <Link href={'/report'}>
                             <span className="link-content">
                                 Report
                             </span>
