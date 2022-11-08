@@ -15,7 +15,7 @@ const AppBtn = ({children = 'Button',onClick,size = 'btn-md', bgColor = 'bg-seco
     }
 
     return (
-        <button className={`btn ${size} ${bgColor} ${outline ? 'btn-outline' : ''}`} onClick={clickHandler}>
+        <button className={`btn ${size} ${bgColor} ${outline ? 'btn-outline' : ''}`} onClick={clickHandler} type="submit">
             {children}
         </button>
     )

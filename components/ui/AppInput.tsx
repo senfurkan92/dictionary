@@ -1,3 +1,5 @@
+import { forwardRef } from 'react'
+
 interface AppInputProps {
     onInput?: Function,
     onBlur?: Function,
@@ -8,11 +10,13 @@ interface AppInputProps {
     error?: string 
 }
 
-const AppInput = ({label, error, inputStyle = 'input-secondary', onBlur, onInput, placeholder = 'Type here...', type= 'text'}: AppInputProps) => {
+export type Ref = HTMLInputElement;
+
+export const AppInput = forwardRef<Ref, AppInputProps>(({label, error, inputStyle = 'input-secondary', onBlur, onInput, placeholder = 'Type here...', type= 'text'}, ref) => {
     return (
         <div className="mb-8 relative">
             <label className=" text-base-content/70 italic font-semibold">{label}</label>
-            <input type={type} placeholder={placeholder} className={`input input-bordered ${inputStyle} w-full`} />
+            <input ref={ref} type={type} placeholder={placeholder} className={`input input-bordered ${inputStyle} w-full`} />
             {
                 error && (
                     <div className="text-error absolute">
@@ -22,6 +26,8 @@ const AppInput = ({label, error, inputStyle = 'input-secondary', onBlur, onInput
             }
         </div>
     )
-}
+})
+
+AppInput.displayName = "AppInput"
 
 export default AppInput
